@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>nderielectronics.com</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#fff;--surface:#f3f1ee;--ink:#1b1a19;--muted:#6b6660;--line:#1b1a19;--accent:#1a56ff;--on-accent:#ffffff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151413;--surface:#22201e;--ink:#f4f1ed;--muted:#a49e97;--line:#f4f1ed}}
+:root[data-theme="dark"]{--bg:#151413;--surface:#22201e;--ink:#f4f1ed;--muted:#a49e97;--line:#f4f1ed}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;border-radius:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Work Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Archivo,"Arial Narrow",sans-serif;margin:0;line-height:1.05}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.top{background:var(--accent);color:var(--on-accent);font-size:14px;font-weight:500;text-align:center;padding:8px 12px}
+header{border-bottom:2px solid var(--line)}
+.bar{display:flex;gap:16px;align-items:center;padding:14px 20px;flex-wrap:wrap}
+.logo{font:800 22px Archivo,sans-serif;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:22px;height:22px;background:var(--accent);display:block}
+.search{flex:1;min-width:200px;display:flex}
+.search input{flex:1;border:2px solid var(--line);border-right:0;padding:10px 12px;font:inherit;background:var(--bg);color:var(--ink)}
+.search button,.cartbtn{border:2px solid var(--line);background:var(--accent);color:var(--on-accent);font:600 15px "Work Sans",sans-serif;padding:10px 16px;cursor:pointer}
+.cartbtn{background:var(--bg);color:var(--ink)}
+.cartbtn b{background:var(--accent);color:var(--on-accent);padding:1px 7px;margin-left:6px}
+nav{display:flex;gap:4px;overflow-x:auto;padding:0 20px 12px}
+nav a{padding:6px 12px;text-decoration:none;font-weight:500;white-space:nowrap;border:2px solid transparent}
+nav a:hover{border-color:var(--line)}
+.hero{display:grid;grid-template-columns:1.15fr 1fr;border-bottom:2px solid var(--line)}
+.hero-text{background:var(--accent);color:var(--on-accent);padding:56px 40px}
+.hero-text h1{font-size:clamp(38px,6vw,72px);font-weight:800;letter-spacing:-.02em}
+.hero-text p{max-width:44ch;font-size:18px;margin:18px 0 28px}
+.btn{display:inline-block;background:#1b1a19;color:#fff;padding:14px 26px;font-weight:600;text-decoration:none;border:2px solid #1b1a19}
+.btn:hover{background:#fff;color:#1b1a19}
+section{padding:56px 0}
+h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:24px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border:2px solid var(--line)}
+.cats button{border:0;border-right:2px solid var(--line);background:var(--bg);color:var(--ink);padding:26px 16px;text-align:left;font:700 18px Archivo,sans-serif;cursor:pointer}
+.cats button:last-child{border-right:0}
+.cats button small{display:block;font:400 14px "Work Sans",sans-serif;color:var(--muted);margin-top:4px}
+.cats button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.cats button[aria-pressed="true"] small{color:var(--on-accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0;border-top:2px solid var(--line);border-left:2px solid var(--line);margin-top:24px}
+.card{border-right:2px solid var(--line);border-bottom:2px solid var(--line);display:flex;flex-direction:column}
+.img{aspect-ratio:1;background:var(--surface);position:relative;display:grid;place-items:center}
+.img img{width:100%;height:100%;object-fit:cover;display:block}
+.tag{position:absolute;top:0;left:0;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:13px;padding:3px 10px}
+.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info h3{font-size:18px;font-weight:700}
+.info .sub{color:var(--muted);font-size:14px}
+.row{flex-wrap:wrap;gap:8px;display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:12px}
+.price{font:800 20px Archivo,sans-serif}
+.add{border:2px solid var(--line);background:var(--bg);color:var(--ink);font:600 14px "Work Sans",sans-serif;padding:8px 14px;cursor:pointer}
+.add:hover,.add.done{background:var(--accent);color:var(--on-accent)}
+.empty{padding:32px;border:2px solid var(--line);margin-top:24px}
+.trust{background:var(--surface);border-top:2px solid var(--line);border-bottom:2px solid var(--line)}
+.trust .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.trust div{padding:28px 20px;border-left:2px solid var(--line)}
+.trust div:first-child{border-left:0}
+.trust h3{font-size:18px;margin-bottom:4px}
+.trust p{margin:0;color:var(--muted)}
+footer{padding:40px 0;font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between}
+footer ul{list-style:none;margin:8px 0 0;padding:0}
+footer li{margin:4px 0}
+.cart{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--bg);border-left:2px solid var(--line);transform:translateX(100%);transition:transform .2s;z-index:10;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.cart.open{transform:none}
+.cart header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px}
+.cart h2{margin:0;font-size:24px}
+.cart ul{list-style:none;margin:0;padding:0 20px;flex:1;overflow:auto}
+.cart li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--muted)}
+.cart li button{border:0;background:none;color:var(--muted);cursor:pointer;text-decoration:underline;font:inherit;padding:0}
+.cart .foot{padding:20px;border-top:2px solid var(--line)}
+.cart .foot{max-height:75vh;overflow:auto}
+.paybtn{background:var(--accent);color:var(--on-accent);border:2px solid var(--line);margin-bottom:10px;display:none}
+.paybtn:hover{background:#fff;color:#1b1a19}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:20;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));overflow:auto}
+.modal.open{display:block}
+.modal .box{background:var(--bg);color:var(--ink);border:2px solid var(--line);max-width:440px;margin:0 auto;padding:20px}
+.modal h2{font-size:26px;margin:0 0 12px}
+.modal ol{margin:0;padding:0;list-style:none;counter-reset:s}
+.modal li{counter-increment:s;display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--muted)}
+.modal li:before{content:counter(s);flex:none;width:26px;height:26px;background:var(--accent);color:var(--on-accent);font:700 14px Archivo,sans-serif;display:grid;place-items:center}
+.modal .val{font:800 20px Archivo,sans-serif}
+.modal .small{font-size:14px;color:var(--muted);margin-top:2px}
+.modal .btn{display:block;text-align:center;width:100%;margin-top:12px;cursor:pointer;font:600 16px "Work Sans",sans-serif}
+.modal .dial{background:var(--accent);color:var(--on-accent);border-color:var(--line)}
+.modal .dial:hover{background:#fff;color:#1b1a19}
+.own{display:none!important}
+body.owner .own{display:inline-block!important}
+.gn{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:44px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:700 22px/1 Archivo,sans-serif;cursor:pointer;padding:0}
+.gp{left:0;border-left:0}.gx{right:0;border-right:0}
+.gc{position:absolute;right:0;bottom:0;background:var(--bg);border-top:2px solid var(--line);border-left:2px solid var(--line);font-size:12px;font-weight:600;padding:2px 8px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:10px}
+.th{position:relative;aspect-ratio:1;border:2px solid var(--line)}
+.th img{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}
+.th button{position:absolute;top:0;right:0;width:26px;height:26px;border:0;background:#1b1a19;color:#fff;cursor:pointer;font:700 16px/1 sans-serif;padding:0}
+.th span{position:absolute;left:0;bottom:0;background:var(--accent);color:var(--on-accent);font-size:11px;font-weight:600;padding:1px 6px}
+.lnk{background:none;border:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+.hero-art{background:var(--surface);display:grid;grid-template-columns:repeat(3,1fr);align-content:start}
+.hero-art .tile{display:grid;place-items:center;aspect-ratio:1;padding:8px;border:0;border-right:2px solid var(--line);border-bottom:2px solid var(--line);cursor:pointer;text-align:center}
+.hero-art .tile:nth-child(3n){border-right:0}
+.hero-art .lr{border-bottom:0}
+.hero-art .tile *{pointer-events:none}
+.hero-art .tile b{font:800 clamp(16px,2.2vw,26px) Archivo,sans-serif}
+.hero-art .c0{background:var(--accent);color:var(--on-accent)}
+.hero-art .c1{background:#1b1a19;color:#fff}
+.hero-art .c2{background:var(--surface);color:var(--ink)}
+.hero-art .tile:hover{filter:brightness(.92)}
+.nop{color:var(--muted);font-weight:600;padding:12px;text-align:center}
+.img img{cursor:pointer}
+.info .sub{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+.dimg{aspect-ratio:1;background:var(--surface);border:2px solid var(--line);display:grid;place-items:center;margin-bottom:8px}
+.dimg img{width:100%;height:100%;object-fit:contain;display:block}
+.dth{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;margin-bottom:12px}
+.dt{aspect-ratio:1;padding:0;border:2px solid var(--muted);background:var(--surface);cursor:pointer}
+.dt.on{border-color:var(--accent)}
+.dt img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.dprice{font:800 26px Archivo,sans-serif;margin:8px 0 12px}
+.tabs{border-bottom:2px solid var(--line);margin-bottom:10px}
+.tab{display:inline-block;background:var(--accent);color:var(--on-accent);font:700 14px Archivo,sans-serif;padding:6px 14px}
+.dtext{white-space:pre-line;overflow-wrap:anywhere}
+.savebar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:9;background:#1b1a19;color:#fff;padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));gap:12px;align-items:center;justify-content:space-between;border-top:2px solid var(--accent)}
+.savebar.show{display:flex}
+.savebar .btn{background:var(--accent);color:var(--on-accent);border-color:var(--accent);cursor:pointer;font:600 15px "Work Sans",sans-serif;padding:10px 18px}
+.search input{min-width:0;width:100%}
+@media(max-width:560px){.search{flex-basis:100%}}
+a.cartbtn{text-decoration:none;display:inline-block;color:var(--ink);background:var(--bg)}
+.wab .wa{margin-right:6px}
+.ownbar{margin-top:12px}
+.ownbar .add{margin:0 8px 8px 0}
+.ownbar .err{display:inline-block;margin:0}
+.hi{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;vertical-align:-2px;margin-right:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.f .fl{display:block;font-weight:600;margin:14px 0 4px}
+.f input:not([type=file]),.f textarea,.f select{width:100%;border:2px solid var(--line);padding:10px 12px;font:inherit;background:var(--bg);color:var(--ink)}
+.up{display:grid;place-items:center;gap:6px;border:2px dashed var(--line);padding:22px;text-align:center;cursor:pointer;font-weight:600}
+.up .upi{width:36px;height:36px;stroke:var(--ink);fill:none;stroke-width:2}
+.up img{display:none;max-width:100%;max-height:180px}
+.sr:focus-visible+.up{outline:3px solid var(--accent);outline-offset:2px}
+.err{color:#c62828;font-weight:600;margin-top:10px;min-height:1em}
+.modal .ghost{background:var(--bg);color:var(--ink);border-color:var(--line)}
+.rm{margin:8px 0 0;color:var(--muted);border-style:dashed}
+.wa{width:20px;height:20px;fill:#25D366;vertical-align:-4px;margin-right:8px;flex:none}
+.cart .foot .btn{display:block;width:100%;text-align:center;cursor:pointer;font:600 16px "Work Sans",sans-serif}
+.cart .foot p{display:flex;justify-content:space-between;margin:0 0 14px;font-weight:600}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.hero-text{padding:40px 20px}.hero-art .tile b{font-size:15px}.trust div{border-left:0;border-top:2px solid var(--line)}.trust div:first-child{border-top:0}.cats button{border-right:0;border-bottom:2px solid var(--line)}}
+@media(prefers-reduced-motion:reduce){.cart{transition:none}}
+</style>
+</head>
+<body>
+<div class="top">Free delivery on orders over KSh 5,000. Pay on delivery available. Order on WhatsApp: 0785 886 495.</div>
+<header>
+  <div class="wrap bar" style="padding-left:0;padding-right:0">
+    <a class="logo" href="#"><i></i>nderielectronics.com</a>
+    <form class="search" role="search" onsubmit="event.preventDefault();q(document.getElementById('s').value)">
+      <input id="s" type="search" placeholder="Search products" aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
+    <button class="cartbtn own" id="addopen" type="button"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>Add product</button>
+    <button class="cartbtn own" id="expopen" type="button"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></svg>Save changes</button>
+    <a class="cartbtn wab" href="https://wa.me/254785886495?text=Hello%20nderielectronics.com" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+    <button class="cartbtn" id="open" type="button">Cart<b id="count">0</b></button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-text">
+    <h1>T-shirts, clothes, bags, phones, watches and TVs.</h1>
+    <p>Quality products at honest prices. Pick your items and order on WhatsApp.</p>
+    <a class="btn" href="#shop">Shop all products</a>
+  </div>
+  <div class="hero-art" id="heroCats" role="group" aria-label="Product categories"></div>
+</div>
+
+<section id="shop">
+  <div class="wrap">
+    <h2>Shop by category</h2>
+    <div class="cats" id="cats"></div>
+    <div class="ownbar own" id="ownbar"><button class="add" type="button" id="catadd">Add category</button><button class="add" type="button" id="prodadd">Add product</button><button class="add" type="button" id="catren">Rename this category</button><button class="add" type="button" id="catdel">Delete this category</button><span class="err" id="ownmsg" role="alert"></span></div>
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div><h3>Genuine products</h3><p>Bought from authorised suppliers only.</p></div>
+    <div><h3>Quality checked</h3><p>Every item is checked before it goes out.</p></div>
+    <div><h3>Fast delivery</h3><p>Order before 2 pm for same-day dispatch.</p></div>
+    <div><h3>Easy returns</h3><p>Return unopened items within 7 days.</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div><strong>nderielectronics.com</strong><p>Electronics you can trust.</p></div>
+    <div><strong>Shop</strong><ul><li><a href="#shop">T-shirts</a></li><li><a href="#shop">Phones</a></li><li><a href="#shop">Bags</a></li></ul></div>
+    <div><strong>Help</strong><ul><li><a href="#">Delivery</a></li><li><a href="#">Returns</a></li><li><a href="https://wa.me/254785886495?text=Hello%20nderielectronics.com" target="_blank" rel="noopener"><svg class="wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Contact us on WhatsApp</a></li></ul></div>
+    <div><strong>Owner</strong><ul><li><button class="lnk" id="ownbtn" type="button">Owner login</button></li></ul></div>
+  </div>
+</footer>
+
+<aside class="cart" id="cart" aria-label="Shopping cart" aria-hidden="true">
+  <header><h2>Your cart</h2><button class="add" id="close" type="button">Close</button></header>
+  <ul id="items"></ul>
+  <div class="foot"><p><span>Total</span><span id="total">KSh 0</span></p>
+  <button class="btn paybtn" type="button" id="payopen">Pay with M-Pesa</button><a class="btn" id="checkout" href="#" target="_blank" rel="noopener"><svg class="wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span id="cklabel">Order on WhatsApp</span></a></div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle" aria-hidden="true">
+ <div class="box">
+  <h2 id="mtitle">Pay with M-Pesa</h2>
+  <ol>
+   <li><div>Dial <span class="val">*334#</span><a class="btn dial" href="tel:*334%23">Open dialer</a><div class="small">Works on your phone. On a computer, use your phone instead.</div></div></li>
+   <li><div>Choose <span class="val">1</span> for Send Money</div></li>
+   <li><div>Choose <span class="val">1</span> to send to any network</div></li>
+   <li><div>Enter the phone number<br><span class="val">0745 903 689</span><div class="small">Check the name shown before you continue.</div></div></li>
+   <li><div>Enter the amount<br><span class="val" id="payamt">KSh 0</span><div class="small">Type it without commas: <b id="payraw">0</b></div></div></li>
+   <li><div>Enter your M-Pesa PIN<div class="small">Never share your PIN with anyone.</div></div></li>
+  </ol>
+  <div class="small" style="margin-top:12px">When the M-Pesa confirmation message arrives, come back and tap Order on WhatsApp to send us your order and the message.</div>
+  <button class="btn" type="button" id="mclose">Done, back to my cart</button>
+ </div>
+</div>
+<div class="modal" id="addm" role="dialog" aria-modal="true" aria-labelledby="atitle" aria-hidden="true">
+ <div class="box f">
+  <h2 id="atitle">Add a product</h2>
+  <input id="photo" type="file" accept="image/*" multiple class="sr">
+  <label class="up" for="photo"><svg class="upi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg><span>Upload photos (up to 6)</span></label>
+  <div class="thumbs" id="thumbs"></div>
+  <label class="fl" for="pn">Product name</label><input id="pn" maxlength="60" placeholder="e.g. Black cotton T-shirt">
+  <label class="fl" for="pd">Description</label><textarea id="pd" rows="5" maxlength="600" placeholder="Describe the product: size, colour, material, what is in the box"></textarea>
+  <label class="fl" for="pp">Price (KSh)</label><input id="pp" type="number" min="1" inputmode="numeric" placeholder="e.g. 1500">
+  <label class="fl" for="pc">Category</label><select id="pc"></select>
+  <div id="adderr" class="err" role="alert"></div>
+  <button class="btn" type="button" id="addsave">Add to shop</button>
+  <button class="btn ghost" type="button" id="addclose">Cancel</button>
+  <button class="btn ghost" type="button" id="adddel" style="display:none">Delete product</button>
+  <div class="small" style="margin-top:14px">Changes you make here are saved on this device only. To show them to customers, tap Save changes and upload the file with your site.</div>
+ </div>
+</div>
+<div class="modal" id="detail" role="dialog" aria-modal="true" aria-labelledby="dtitle" aria-hidden="true">
+ <div class="box"><div id="dbody"></div><button class="btn ghost" type="button" id="dclose">Close</button></div>
+</div>
+<div class="modal" id="login" role="dialog" aria-modal="true" aria-labelledby="ltitle" aria-hidden="true">
+ <div class="box f">
+  <h2 id="ltitle">Owner login</h2>
+  <div class="small" id="lhint"></div>
+  <label class="fl" for="lpw">Password</label><input id="lpw" type="password" autocomplete="off">
+  <div id="lconf" style="display:none"><label class="fl" for="lpw2">Repeat password</label><input id="lpw2" type="password" autocomplete="off"></div>
+  <div id="lerr" class="err" role="alert"></div>
+  <button class="btn" type="button" id="lgo">Log in</button>
+  <button class="btn ghost" type="button" id="lclose">Cancel</button>
+ </div>
+</div>
+<div class="modal" id="expm" role="dialog" aria-modal="true" aria-labelledby="etitle" aria-hidden="true">
+ <div class="box">
+  <h2 id="etitle">Save your changes</h2>
+  <p id="expmsg"></p>
+  <button class="btn" type="button" id="expdone">Done</button>
+ </div>
+</div>
+<div class="savebar" id="savebar" role="status"><span>You have changes customers cannot see yet.</span><button class="btn" type="button" id="savechg">Save changes</button></div>
+<div class="modal" id="catm" role="dialog" aria-modal="true" aria-labelledby="ctitle" aria-hidden="true">
+ <div class="box f"><h2 id="ctitle">Add a category</h2>
+  <label class="fl" for="cn">Category name</label><input id="cn" maxlength="30" placeholder="e.g. Shoes">
+  <div id="cerr" class="err" role="alert"></div>
+  <button class="btn" type="button" id="csave">Save</button><button class="btn ghost" type="button" id="cclose">Cancel</button>
+ </div>
+</div>
+<script>
+var IMG={};
+var P=[];
+var cats=["All","T-shirts","Televisions","Phones","Watches","Bags","Clothes"],DEFCATS=cats.slice(1),cur="All",cart=[],term="";
+function money(n){return 'KSh '+n.toLocaleString('en-US')}
+var $=function(i){return document.getElementById(i)};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function drawCats(){$("cats").innerHTML=cats.map(function(c){
+ var n=P.filter(function(p){return !p.del&&(c=="All"||p.c==c)}).length;
+ return '<button type="button" data-c="'+esc(c)+'" aria-pressed="'+(c==cur)+'">'+esc(c)+'<small>'+n+' items</small></button>'}).join("");
+ $("prodadd").textContent=cur=="All"?"Add product":"Add product to "+cur;
+ $("catren").style.display=$("catdel").style.display=cur=="All"?"none":"inline-block";
+ $("catdel").textContent="Delete this category";dcat=0;$("ownmsg").textContent="";
+ var v=$("pc").value;$("pc").innerHTML=cats.slice(1).map(function(c){return '<option>'+esc(c)+'</option>'}).join("");if(v)$("pc").value=v;
+ drawHero()}
+var catmode="add",dcat=0;
+function ensureCats(){P.forEach(function(p){if(!p.del&&p.c&&cats.indexOf(p.c)<0)cats.push(p.c)})}
+function catOpen(m){if(m=="rename"&&cur=="All")return;catmode=m;$("ctitle").textContent=m=="add"?"Add a category":"Rename category";$("cn").value=m=="rename"?cur:"";$("cerr").textContent="";$("catm").classList.add("open");$("catm").setAttribute("aria-hidden","false");$("cn").focus()}
+function catClose(){$("catm").classList.remove("open");$("catm").setAttribute("aria-hidden","true")}
+function catSave(){var nm=$("cn").value.trim(),low=nm.toLowerCase(),dup=cats.some(function(c){return c.toLowerCase()==low&&!(catmode=="rename"&&c==cur)});
+ if(!nm){$("cerr").textContent="Please enter a category name.";return}
+ if(low=="all"||dup){$("cerr").textContent="That name is already used.";return}
+ if(catmode=="add"){cats.push(nm);cur=nm}
+ else{var old=cur;cats[cats.indexOf(old)]=nm;P.forEach(function(p){if(p.c==old){p.c=nm;if(!p.u)p.mod=1}});cur=nm}
+ var ok=saveS();term="";$("s").value="";fixGrid();drawCats();draw();catClose();
+ if(!ok)$("ownmsg").textContent="Saved for now, but this browser is out of space."}
+function catDelete(){if(cur=="All")return;var n=P.filter(function(p){return !p.del&&p.c==cur}).length;
+ if(n){$("ownmsg").textContent="This category still has "+n+" product"+(n>1?"s":"")+". Delete or move them first.";return}
+ if(!dcat){dcat=1;$("catdel").textContent="Tap again to delete";return}
+ cats.splice(cats.indexOf(cur),1);cur="All";saveS();fixGrid();drawCats();draw()}
+function draw(){
+ var l=P.filter(function(p){return !p.del&&(cur=="All"||p.c==cur)&&(p.n+" "+p.c).toLowerCase().indexOf(term)>-1});
+ $("grid").innerHTML=l.length?l.map(function(p){var i=P.indexOf(p),n=p.g.length,pic=n?'<img src="'+src(p.g[p.k])+'" alt="'+esc(p.n)+'" data-v="'+i+'">':'<div class="nop">No photo yet</div>';
+  return '<article class="card"><div class="img">'+pic+(n>1?'<button class="gn gp" type="button" data-gi="'+i+'" data-gd="-1" aria-label="Previous photo">&#8249;</button><button class="gn gx" type="button" data-gi="'+i+'" data-gd="1" aria-label="Next photo">&#8250;</button><span class="gc">'+(p.k+1)+'/'+n+'</span>':'')+'</div><div class="info"><h3>'+esc(p.n)+'</h3><span class="sub">'+esc(p.s)+'</span><button class="lnk" type="button" data-v="'+i+'" style="text-align:left">View details</button><div class="row"><span class="price">'+money(p.p)+'</span><button class="add" type="button" data-i="'+i+'">Add to cart</button></div><button class="add rm own" type="button" data-e="'+i+'">Edit product</button></div></article>'}).join(""):"";
+refreshDirty();
+ if(!l.length){$("grid").outerHTML='<div class="empty" id="grid">'+(P.some(function(p){return !p.del})?'No products match your search. Try a different word or choose All.':'Our products are being added. <a href="https://wa.me/254785886495?text=Hello%20nderielectronics.com" target="_blank" rel="noopener">Message us on WhatsApp</a> to ask what is in stock.')+'</div>'}
+}
+function q(v){term=v.trim().toLowerCase();cur="All";var g=$("grid");if(g.className!="grid"){g.outerHTML='<div class="grid" id="grid" aria-live="polite"></div>'}drawCats();draw();$("shop").scrollIntoView()}
+var WA="254785886495";
+function waLink(){
+ var g={},o=[];
+ cart.forEach(function(x){if(!g[x.n]){g[x.n]={x:x,q:0};o.push(g[x.n])}g[x.n].q++});
+ var t="Hello nderielectronics.com, I would like to order:\n"+o.map(function(r){return r.q+" x "+r.x.n+" - "+money(r.x.p*r.q)}).join("\n")+"\nTotal: "+money(cart.reduce(function(a,x){return a+x.p},0))+"\nI will send "+money(cart.reduce(function(a,x){return a+x.p},0))+" to 0745 903 689 and share the payment message here."+"\nPlease confirm availability and delivery.";
+ return "https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+}
+function drawCart(){
+ $("count").textContent=cart.length;
+ $("items").innerHTML=cart.length?cart.map(function(x,k){return '<li><span>'+esc(x.n)+'<br>'+money(x.p)+'</span><button type="button" data-r="'+k+'">Remove</button></li>'}).join(""):'<li>Your cart is empty. Add a product to get started.</li>';
+ $("checkout").href=cart.length?waLink():"#";
+ var tt=cart.reduce(function(a,x){return a+x.p},0);
+ $("total").textContent=money(tt);
+ $("payamt").textContent=money(tt);
+ $("payraw").textContent=tt;
+ $("payopen").style.display=cart.length?"block":"none";
+}
+function modal(o){$("modal").classList.toggle("open",o);$("modal").setAttribute("aria-hidden",!o);if(o)$("mclose").focus()}
+function panel(o){$("cart").classList.toggle("open",o);$("cart").setAttribute("aria-hidden",!o)}
+document.addEventListener("click",function(e){
+ var t=e.target;
+ if(t.dataset.c){cur=t.dataset.c;term="";$("s").value="";var g=$("grid");if(g.className!="grid"){g.outerHTML='<div class="grid" id="grid" aria-live="polite"></div>'}drawCats();draw();if(t.classList&&t.classList.contains("tile"))$("shop").scrollIntoView()}
+ if(t.dataset.i){cart.push(P[t.dataset.i]);drawCart();t.textContent="Added";t.classList.add("done");setTimeout(function(){t.textContent="Add to cart";t.classList.remove("done")},1200)}
+ if(t.dataset.r){cart.splice(t.dataset.r,1);drawCart()}
+ if(t.closest&&t.closest("#payopen"))modal(true);
+ if(t.id=="mclose"||t.id=="modal")modal(false);
+ if(t.closest&&t.closest("#addopen"))openForm(null);
+ if(t.id=="addclose"||t.id=="addm")addm(false);
+ if(t.id=="addsave")saveForm();
+ if(t.id=="adddel")delProduct();
+ if(t.id=="ownbtn"){if(document.body.classList.contains("owner"))owner(false);else loginOpen()}
+ if(t.id=="savechg"||(t.closest&&t.closest("#expopen")))exportProducts();
+ if(t.id=="expdone"||t.id=="expm"){$("expm").classList.remove("open");$("expm").setAttribute("aria-hidden","true")}
+ if(t.id=="catadd")catOpen("add");
+ if(t.id=="catren")catOpen("rename");
+ if(t.id=="catdel")catDelete();
+ if(t.id=="prodadd")openForm(null);
+ if(t.id=="csave")catSave();
+ if(t.id=="cclose"||t.id=="catm")catClose();
+ if(t.id=="lgo")loginGo();
+ if(t.id=="lclose"||t.id=="login")loginClose();
+ if(t.dataset.e)openForm(P[+t.dataset.e]);
+ if(t.dataset.v){dv=P[+t.dataset.v];dk=0;drawDetail();detail(true);$("dclose").focus()}
+ if(t.dataset.dk){dk=+t.dataset.dk;drawDetail()}
+ if(t.id=="dclose"||t.id=="detail")detail(false);
+ if(t.dataset.rt){gal.splice(+t.dataset.rt,1);thumbs()}
+ if(t.dataset.mt){var mm=gal.splice(+t.dataset.mt,1)[0];gal.unshift(mm);thumbs()}
+ if(t.dataset.gi){var gp=P[+t.dataset.gi],gn=gp.g.length;gp.k=(gp.k+(+t.dataset.gd)+gn)%gn;fixGrid();draw()}
+ if(t.id=="open")panel(true);
+ if(t.id=="close")panel(false);
+ if(t.closest&&t.closest("#checkout")&&!cart.length){e.preventDefault();var cl=$("cklabel");cl.textContent="Add an item first";setTimeout(function(){cl.textContent="Order on WhatsApp"},1800)}
+});
+var SK="nderi_shop_v2",uc=0,gal=[],ed=null,dc=0;
+function fixGrid(){var g=$("grid");if(g.className!="grid"){g.outerHTML='<div class="grid" id="grid" aria-live="polite"></div>'}}
+function src(x){return x&&x.indexOf("data:")==0?x:IMG[x]}
+function saveS(){try{var st={e:{},a:[],r:[],c:cats.slice(1)};P.forEach(function(p){if(p.u)st.a.push({id:p.id,n:p.n,s:p.s,p:p.p,c:p.c,d:p.d,g:p.g});else if(p.del)st.r.push(p.id);else if(p.mod)st.e[p.id]={n:p.n,s:p.s,p:p.p,c:p.c,g:p.g}});localStorage.setItem(SK,JSON.stringify(st));return true}catch(e){return false}}
+function loadS(){try{var st=JSON.parse(localStorage.getItem(SK)||"null")||{e:{},a:[],r:[]};if(Array.isArray(st.c))cats=["All"].concat(st.c);
+ P.forEach(function(p){var e=st.e[p.id];if(e){p.n=e.n;p.s=e.s;p.p=e.p;p.c=e.c;p.g=e.g;p.mod=1}if(st.r.indexOf(p.id)>-1)p.del=1});
+ st.a.forEach(function(x){if(P.some(function(q){return q.id==x.id}))return;P.push({id:x.id,n:x.n,s:x.s,p:x.p,c:x.c,d:x.d,g:x.g,k:0,u:1})});
+ var old=localStorage.getItem("nderi_products");
+ if(old){JSON.parse(old).forEach(function(x){P.push({id:"u"+Date.now()+"m"+(uc++),n:x.n,s:x.s,p:x.p,c:x.c,d:x.d,g:x.img?[x.img]:[],k:0,u:1})});localStorage.removeItem("nderi_products");saveS()}
+}catch(e){}}
+function owner(o){document.body.classList.toggle("owner",o);refreshDirty();$("ownbtn").textContent=o?"Owner mode: on (log out)":"Owner login";if(!o)addm(false);try{sessionStorage.setItem("nderi_owner",o?"1":"0")}catch(e){}}
+function hp(s){var h1=0xdeadbeef,h2=0x41c6ce57,i,c;s="nderi:"+s;for(i=0;i<s.length;i++){c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return(4294967296*(2097151&h2)+(h1>>>0)).toString(36)}
+function getPw(){return "1njwvikic3d"}
+function loginOpen(){var has=!!getPw();$("ltitle").textContent=has?"Owner login":"Create your owner password";$("lhint").textContent=has?"Enter your owner password to add and edit products.":"Choose a password of at least 6 characters. ";$("lconf").style.display=has?"none":"block";$("lgo").textContent=has?"Log in":"Create password and log in";$("lpw").value="";$("lpw2").value="";$("lerr").textContent="";$("login").classList.add("open");$("login").setAttribute("aria-hidden","false");$("lpw").focus()}
+function loginClose(){$("login").classList.remove("open");$("login").setAttribute("aria-hidden","true")}
+function loginGo(){var pw=$("lpw").value,sv=getPw();
+ if(sv){if(hp(pw)!=sv){$("lerr").textContent="Wrong password. Try again.";return}}
+ else{if(pw.length<6){$("lerr").textContent="Use at least 6 characters.";return}if(pw!=$("lpw2").value){$("lerr").textContent="The two passwords do not match.";return}try{localStorage.setItem("nderi_pw",hp(pw))}catch(e){$("lerr").textContent="This browser cannot save a password.";return}}
+ loginClose();owner(true)}
+function thumbs(){$("thumbs").innerHTML=gal.map(function(x,i){return '<div class="th"><img src="'+src(x)+'" alt="Photo '+(i+1)+'. Tap to make it the main photo" data-mt="'+i+'">'+(i==0?'<span>Main</span>':'')+'<button type="button" data-rt="'+i+'" aria-label="Remove photo '+(i+1)+'">&times;</button></div>'}).join("")}
+function addm(o){$("addm").classList.toggle("open",o);$("addm").setAttribute("aria-hidden",!o);if(o){$("adderr").textContent="";$("pn").focus()}}
+function openForm(p){if(!p&&cats.length<2){catOpen("add");return}ed=p||null;dc=0;gal=p?p.g.slice():[];$("atitle").textContent=p?"Edit product":"Add a product";$("addsave").textContent=p?"Save changes":"Add to shop";$("adddel").style.display=p?"block":"none";$("adddel").textContent="Delete product";$("pn").value=p?p.n:"";$("pd").value=p?p.s:"";$("pp").value=p?p.p:"";$("pc").value=p?p.c:(cur!="All"&&cats.indexOf(cur)>0?cur:cats[1]);$("photo").value="";thumbs();addm(true)}
+function readPhoto(f){if(gal.length>=6){$("adderr").textContent="You can add up to 6 photos.";return}
+ var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var sc=Math.min(1,640/Math.max(im.width,im.height)),c=document.createElement("canvas"),x;c.width=Math.max(1,Math.round(im.width*sc));c.height=Math.max(1,Math.round(im.height*sc));x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);if(gal.length<6){gal.push(c.toDataURL("image/jpeg",0.78));thumbs();$("adderr").textContent=""}};im.onerror=function(){$("adderr").textContent="That photo could not be read. Try a JPG or PNG."};im.src=r.result};r.readAsDataURL(f)}
+function saveForm(){
+ var n=$("pn").value.trim(),d=$("pd").value.trim(),pr=parseInt($("pp").value,10),c=$("pc").value,np;
+ if(!n||!(pr>0)){$("adderr").textContent="Please add a product name and a price.";return}
+ if(ed){ed.n=n;ed.s=d;ed.p=pr;ed.c=c;ed.g=gal.slice();ed.k=0;ed.mod=1}
+ else{np={id:"u"+Date.now(),n:n,s:d,p:pr,c:c,u:1,g:gal.slice(),k:0};P.push(np)}
+ var ok=saveS();cur=c;term="";$("s").value="";fixGrid();drawCats();draw();drawCart();
+ if(!ok){if(np)ed=np;$("adderr").textContent="Saved for now, but this browser is out of space, so it will be lost when you close the page. Use fewer or smaller photos.";return}
+ addm(false);$("shop").scrollIntoView();
+}
+function delProduct(){if(!ed)return;if(!dc){dc=1;$("adddel").textContent="Tap again to delete";return}
+ if(ed.u)P.splice(P.indexOf(ed),1);else ed.del=1;
+ var g=ed;cart=cart.filter(function(z){return z!==g});saveS();drawCart();fixGrid();drawCats();draw();addm(false)}
+var baseSig="";
+function sig(l){return l.map(function(p){return[p.id,p.n,p.s,p.p,p.c,p.g.length,p.g.map(function(x){return x.length}).join("+")].join("|")}).join("~")}
+function dirty(){return sig(P.filter(function(p){return !p.del}))+"#"+cats.join("|")!=baseSig}
+function refreshDirty(){$("savebar").classList.toggle("show",document.body.classList.contains("owner")&&dirty())}
+window.addEventListener("beforeunload",function(e){if(document.body.classList.contains("owner")&&dirty()){e.preventDefault();e.returnValue=""}});
+var dirH=null;
+function showExp(saved){$("expmsg").innerHTML=saved?'<b>products.json</b> was saved into your site folder. Now open your site on Netlify, go to the <b>Deploys</b> tab and drag that <b>whole folder</b> onto the deploy area. Customers will then see your changes.':'A file called <b>products.json</b> is downloading. Put it in the same folder as <b>index.html</b>, then upload the whole folder to Netlify again (<b>Deploys</b> tab). After that, every customer will see your changes.';$("expm").classList.add("open");$("expm").setAttribute("aria-hidden","false")}
+function dlJson(json){try{var b=new Blob([json],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="products.json";document.body.appendChild(a);a.click();a.remove()}catch(e){}}
+function exportProducts(){
+ var out=P.filter(function(p){return !p.del}).map(function(p){return{id:p.id,n:p.n,s:p.s,p:p.p,c:p.c,g:p.g.map(src)}}),json=JSON.stringify({categories:cats.slice(1),products:out});
+ if(!window.showDirectoryPicker){dlJson(json);showExp(false);return}
+ var pick;try{pick=dirH?Promise.resolve(dirH):window.showDirectoryPicker({mode:"readwrite"})}catch(e){pick=Promise.reject(e)}
+ pick.then(function(d){dirH=d;return d.getFileHandle("products.json",{create:true})}).then(function(fh){return fh.createWritable()}).then(function(w){return w.write(json).then(function(){return w.close()})}).then(function(){showExp(true)}).catch(function(){dirH=null;dlJson(json);showExp(false)});
+}
+function drawHero(){var n=cats.length-1,lr=n-((n%3)||3);
+ $("heroCats").innerHTML=cats.slice(1).map(function(c,i){return '<button class="tile c'+((i+Math.floor(i/3))%3)+(i>=lr?' lr':'')+'" type="button" data-c="'+esc(c)+'" aria-label="Shop '+esc(c)+'"><b>'+esc(c)+'</b></button>'}).join("")}
+var dv=null,dk=0;
+function detail(o){$("detail").classList.toggle("open",o);$("detail").setAttribute("aria-hidden",!o)}
+function drawDetail(){var p=dv,i=P.indexOf(p),n=p.g.length;
+ $("dbody").innerHTML='<h2 id="dtitle">'+esc(p.n)+'</h2>'+(n?'<div class="dimg"><img src="'+src(p.g[dk])+'" alt="'+esc(p.n)+'"></div>'+(n>1?'<div class="dth">'+p.g.map(function(x,j){return '<button type="button" class="dt'+(j==dk?' on':'')+'" data-dk="'+j+'" aria-label="Show photo '+(j+1)+'"><img src="'+src(x)+'" alt=""></button>'}).join("")+'</div>':''):'<div class="dimg nop">No photo yet</div>')+'<div class="dprice">'+money(p.p)+'</div><div class="tabs"><span class="tab">Description</span></div><div class="dtext">'+(p.s?esc(p.s):'No description yet.')+'</div><button class="btn dial" type="button" data-i="'+i+'">Add to cart</button>'}
+document.addEventListener("keydown",function(e){if(e.key=="Escape"){catClose();modal(false);addm(false);detail(false);loginClose();panel(false)}
+ if(e.key=="Enter"&&(e.target.id=="lpw"||e.target.id=="lpw2"))loginGo();
+ if(e.key=="Enter"&&e.target.id=="cn")catSave()});
+document.addEventListener("change",function(e){if(e.target.id=="photo"&&e.target.files){Array.prototype.forEach.call(e.target.files,readPhoto);e.target.value=""}});
+function boot(list,cl){list.forEach(function(x){P.push({id:x.id,n:x.n,s:x.s,p:x.p,c:x.c,g:x.g||[],k:0})});cats=["All"].concat(Array.isArray(cl)?cl:DEFCATS);ensureCats();baseSig=sig(P)+"#"+cats.join("|");
+ loadS();ensureCats();var ow=false;try{ow=sessionStorage.getItem("nderi_owner")=="1";localStorage.removeItem("nderi_owner")}catch(e){}owner(ow);drawHero();drawCats();draw();drawCart()}
+var EMBED=[];
+var booted=false;function once(l,c){if(!booted){booted=true;boot(l||[],c)}}
+setTimeout(function(){once(EMBED)},4000);
+try{fetch("products.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null}).then(function(j){once(j&&Array.isArray(j.products)?j.products:EMBED,j&&Array.isArray(j.products)?j.categories:null)}).catch(function(){once(EMBED)})}catch(e){once(EMBED)}
+</script>
+</body>
+</html>
